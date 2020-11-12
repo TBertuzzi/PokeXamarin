@@ -8,6 +8,7 @@ using PokeXamarin.Helpers;
 using System.IO;
 using PokeXamarin.ViewModels.Interfaces;
 using PokeXamarin.ViewModels;
+using PokeXamarin.Services;
 
 namespace PokeXamarin
 {
@@ -53,7 +54,7 @@ namespace PokeXamarin
 
             services.AddTransient<IMainViewModel, MainViewModel>();
             services.AddTransient<MainPage>();
-           // services.AddSingleton<IDadosCadastraisService, DadosCadastraisService>();
+            services.AddSingleton<IPokemonService, PokemonService>();
             services.AddSingleton<App>();
         }
     }
