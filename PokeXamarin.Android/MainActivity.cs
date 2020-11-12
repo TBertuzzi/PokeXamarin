@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using FFImageLoading.Forms.Platform;
 
 namespace PokeXamarin.Droid
 {
@@ -23,6 +24,9 @@ namespace PokeXamarin.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            CachedImageRenderer.Init(true);
+
             LoadApplication(Startup.Init(ConfigureServices));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

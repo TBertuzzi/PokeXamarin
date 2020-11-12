@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              Padding="0,60,0,0"
              xmlns:c="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PokeXamarin.MainPage">
 
      <ContentPage.Resources>
@@ -23,12 +25,18 @@
                 <ViewCell>
                     <Grid Padding="20,30" RowDefinitions="auto, auto" ColumnDefinitions="auto, *" >
 
-                        <Image HeightRequest="120" 
-                                   WidthRequest = "120"
-                                   Source="{Binding Image, Converter={StaticResource imageFileCvt}}"
-                                   Grid.Row="0"
-                                   Grid.Column="0"
-                                   Grid.RowSpan ="2"/>
+                        <ffimageloading:CachedImage
+                            HeightRequest="120" 
+                            WidthRequest = "120"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.RowSpan ="2"
+                            Source="{Binding Image, Converter={StaticResource imageFileCvt}}"
+                            CacheDuration="7" >
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation BorderHexColor="#ff0000" BorderSize="5" />
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
 
 
                         <Label Grid.Row="0" 
