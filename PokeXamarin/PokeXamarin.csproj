@@ -22,6 +22,7 @@
     <PackageReference Include="Xamarin.Forms.ConvertersPack" Version="1.0.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.466" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

@@ -9,6 +9,7 @@ using Android.OS;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using FFImageLoading.Forms.Platform;
+using Acr.UserDialogs;
 
 namespace PokeXamarin.Droid
 {
@@ -26,6 +27,7 @@ namespace PokeXamarin.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             CachedImageRenderer.Init(true);
+            UserDialogs.Init(this);
 
             LoadApplication(Startup.Init(ConfigureServices));
         }

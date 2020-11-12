@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Acr.UserDialogs;
 
 namespace PokeXamarin.ViewModels
 {
@@ -29,16 +30,17 @@ namespace PokeXamarin.ViewModels
         {
             try
             {
-                IsBusy = true;
-
-                var pokemons = await _PokemonService.GetPokemonsAsync();
-
-                Pokemons.Clear();
-
-                foreach (var pokemon in pokemons)
+                using (var Dialog = UserDialogs.Instance.Loading("Carregando Pokemons", null, null, true, MaskType.Black))
                 {
-                    pokemon.Image = GetImageStreamFromUrl(pokemon.Sprites.FrontDefault.AbsoluteUri);
-                    Pokemons.Add(pokemon);
+                    var pokemons = await _PokemonService.GetPokemonsAsync();
+
+                    Pokemons.Clear();
+
+                    foreach (var pokemon in pokemons)
+                    {
+                        pokemon.Image = GetImageStreamFromUrl(pokemon.Sprites.FrontDefault.AbsoluteUri);
+                        Pokemons.Add(pokemon);
+                    }
                 }
 
             }
@@ -48,7 +50,7 @@ namespace PokeXamarin.ViewModels
             }
             finally
             {
-                IsBusy = false;
+
             }
         }
 
