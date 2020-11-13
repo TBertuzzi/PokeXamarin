@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Acr.UserDialogs;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PokeXamarin.ViewModels
 {
@@ -16,6 +18,10 @@ namespace PokeXamarin.ViewModels
     {
         public ObservableCollection<Pokemon> Pokemons { get; }
         IPokemonService _PokemonService;
+
+        private ICommand _itemTappedCommand;
+        public ICommand ItemTappedCommand => _itemTappedCommand ?? (_itemTappedCommand =
+            new Command<Pokemon>(async (pokemon) => await ItemTappedCommandExecute(pokemon), (pokemon) => !IsBusy));
 
         public MainViewModel(ILogger<MainViewModel> logger)
         {
@@ -72,6 +78,11 @@ namespace PokeXamarin.ViewModels
                 return null;
 
             }
+        }
+
+        private async Task ItemTappedCommandExecute(Pokemon pokemon)
+        {
+            var teste = pokemon;
         }
     }
 }

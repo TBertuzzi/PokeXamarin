@@ -30,6 +30,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Interfaces\" />
     <Folder Include="Services\" />
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="appsettings.json" />
