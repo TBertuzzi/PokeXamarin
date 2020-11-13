@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using FFImageLoading.Forms.Platform;
 using Foundation;
@@ -24,6 +25,11 @@ namespace PokeXamarin.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            CultureInfo brasilCulture = new CultureInfo("pt-BR");
+            CultureInfo.DefaultThreadCurrentCulture = brasilCulture;
+
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.Init();
 
             CachedImageRenderer.Init();
