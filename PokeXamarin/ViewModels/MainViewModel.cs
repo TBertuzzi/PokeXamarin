@@ -15,6 +15,7 @@ using Rg.Plugins.Popup.Services;
 using System.Linq;
 using MonkeyCache.LiteDB;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace PokeXamarin.ViewModels
 {
@@ -24,6 +25,7 @@ namespace PokeXamarin.ViewModels
 
         public ObservableCollection<Pokemon> Pokemons { get; }
         IPokemonService _PokemonService;
+        bool IsNotConnected { get; set; };
 
         private ICommand _itemTappedCommand;
         public ICommand ItemTappedCommand => _itemTappedCommand ?? (_itemTappedCommand =
@@ -31,11 +33,21 @@ namespace PokeXamarin.ViewModels
 
         public MainViewModel(ILogger<MainViewModel> logger)
         {
+            IsNotConnected = false;
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
             Title = "Poke Xamarin";
             Pokemons = new ObservableCollection<Pokemon>();
             _PokemonService = App.ServiceProvider.GetService<IPokemonService>();
             logger.LogCritical("Acessando o Aplicativo");
 
+        }
+
+        async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            var IsNotConnected = e.NetworkAccess != NetworkAccess.Internet;
+
+            if (IsNotConnected)
+                await Application.Current.MainPage.DisplayAlert("Atenção", "Estamos sem internet :(", "OK");
         }
 
         public async Task Carregar()
@@ -48,7 +60,7 @@ namespace PokeXamarin.ViewModels
                     Pokemons.Clear();
 
 
-                    if (existingList.Count == 0)
+                    if (existingList.Count == 0 && !IsNotConnected)
                         await GravarPokemons();
                     else
                     {
