@@ -12,7 +12,7 @@ Controles e Plugins Utilizados :
 |Microsoft Extensions Com Xamarin|[Montemagno](https://montemagno.com/add-asp-net-cores-dependency-injection-into-xamarin-apps-with-hostbuilder/)|
 |FFImageLoading|[Medium](https://bertuzzi.medium.com/meu-plugin-minha-vida-ffimageloading-9a03f1e7cd52)|
 |FFImageLoading Transformations|[Medium](https://bertuzzi.medium.com/meu-plugin-minha-vida-ffimageloading-capitulo-2-transformations-facc276fa885)|
-|Xamarin.Forms.ConvertersPack|[Github](https://github.com/TBertuzzi/Xamarin.Forms.ConvertersPack)|
+|MvvmHelpers|[Medium](https://bertuzzi.medium.com/o-x-do-xamarin-forms-mvvm-helpers-7b73b821fc34)|
 |ACR User Dialogs|[Medium](https://medium.com/@bertuzzi/meu-plugin-minha-vida-toast-load-dialogs-baf96b51ade7)|
 |Pop ups|[Medium](https://medium.com/@bertuzzi/o-x-do-xamarin-forms-pop-ups-5cffa68ee3e)|
 |MonkeyCache|[Medium](https://bertuzzi.medium.com/o-x-do-xamarin-forms-armazenando-cache-com-monkey-cache-p-b881deeba8cd)|
