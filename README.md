@@ -15,6 +15,5 @@ Controles e Plugins Utilizados :
 |Xamarin.Forms.ConvertersPack|[Github](https://github.com/TBertuzzi/Xamarin.Forms.ConvertersPack)|
 |ACR User Dialogs|[Medium](https://medium.com/@bertuzzi/meu-plugin-minha-vida-toast-load-dialogs-baf96b51ade7)|
 |Pop ups|[Medium](https://medium.com/@bertuzzi/o-x-do-xamarin-forms-pop-ups-5cffa68ee3e)|
-
-|Xamarin.Forms.StepProgressBar|[Github](https://github.com/TBertuzzi/Xamarin.Forms.StepProgressBar)|
+|MonkeyCache|[Medium](https://bertuzzi.medium.com/o-x-do-xamarin-forms-armazenando-cache-com-monkey-cache-p-b881deeba8cd)|
 
