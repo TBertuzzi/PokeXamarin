@@ -2,6 +2,8 @@
 
 Aplicativo de Listagem de Pokemons Feito em Xamarin.Forms para Demonstrar Pacotes no Canal .Net DevWeek
 
+* Estes são exemplos de pacotes que de forma simples e/ou rapida resolver problemas, ou agilizar o Desenvolvimento do seu app.
+
 Controles e Plugins Utilizados :
 
 |ControlePLugin |Como Utilizar|
