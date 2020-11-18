@@ -11,11 +11,17 @@ using System.Net.Http;
 using Acr.UserDialogs;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
+using System.Linq;
+using MonkeyCache.LiteDB;
+using System.Collections.Generic;
 
 namespace PokeXamarin.ViewModels
 {
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
+        private string _key = "pokemon";
+
         public ObservableCollection<Pokemon> Pokemons { get; }
         IPokemonService _PokemonService;
 
@@ -38,14 +44,18 @@ namespace PokeXamarin.ViewModels
             {
                 using (var Dialog = UserDialogs.Instance.Loading("Carregando Pokemons", null, null, true, MaskType.Black))
                 {
-                    var pokemons = await _PokemonService.GetPokemonsAsync();
-
+                    var existingList = Barrel.Current.Get<List<Pokemon>>(_key) ?? new List<Pokemon>();
                     Pokemons.Clear();
 
-                    foreach (var pokemon in pokemons)
+
+                    if (existingList.Count == 0)
+                        await GravarPokemons();
+                    else
                     {
-                        pokemon.Image = GetImageStreamFromUrl(pokemon.Sprites.FrontDefault.AbsoluteUri);
-                        Pokemons.Add(pokemon);
+                        foreach (var pokemon in existingList)
+                        {
+                            Pokemons.Add(pokemon);
+                        }
                     }
                 }
 
@@ -60,28 +70,49 @@ namespace PokeXamarin.ViewModels
             }
         }
 
-        private static byte[] GetImageStreamFromUrl(string url)
+        private async Task GravarPokemons()
         {
-            try
+            IsBusy = true;
+
+            var pokemons = await _PokemonService.GetPokemonsAsync();
+
+            if (pokemons != null && pokemons.Count > 0)
             {
-                using (var webClient = new HttpClient())
+                Pokemons.Clear();
+
+                var existingList = Barrel.Current.Get<List<Pokemon>>(_key) ?? new List<Pokemon>();
+
+                foreach (var pokemon in pokemons)
                 {
-                    var imageBytes = webClient.GetByteArrayAsync(url).Result;
+                    var isExist = existingList.Any(e => e.Id == pokemon.Id);
 
-                    return imageBytes;
+                    pokemon.Image = ImageHelpers.GetImageStreamFromUrl(pokemon.Sprites.FrontDefault.AbsoluteUri);
 
+                    pokemon.AllTypes = String.Join(",", pokemon.Types.Select(p => p.Type.Name.ToString()).ToArray());
+
+                    if (!isExist)
+                    {
+                        existingList.Add(pokemon);
+                    }
+
+                    Pokemons.Add(pokemon);
                 }
-            }
-            catch (Exception ex)
-            {
-                var message = ex.Message;
-                return null;
 
+                existingList = existingList.OrderBy(e => e.Id).ToList();
+
+                Barrel.Current.Add(_key, existingList, TimeSpan.FromDays(30));
             }
+
+            IsBusy = false;
         }
+
+
 
         private async Task ItemTappedCommandExecute(Pokemon pokemon)
         {
+            var page = new PokemonProfilePage(pokemon);
+
+            await PopupNavigation.Instance.PushAsync(page);
             var teste = pokemon;
         }
     }

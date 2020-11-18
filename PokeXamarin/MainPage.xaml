@@ -27,6 +27,8 @@
                     <Grid Padding="20,30" RowDefinitions="auto, auto" ColumnDefinitions="auto, *" >
 
                         <ffimageloading:CachedImage
+                              HorizontalOptions="CenterAndExpand"
+                              VerticalOptions="CenterAndExpand"
                             HeightRequest="120" 
                             WidthRequest = "120"
                             Grid.Row="0"

@@ -18,6 +18,14 @@ namespace PokeXamarin.Model
         public Sprites Sprites { get; set; }
 
         public byte[] Image { get; set; }
+
+        [JsonProperty("types")]
+        public TypeElement[] Types { get; set; }
+
+        [JsonProperty("base_experience")]
+        public long BaseExperience { get; set; }
+
+        public string AllTypes { get; set; }
     }
 
     public class Sprites
@@ -25,4 +33,23 @@ namespace PokeXamarin.Model
         [JsonProperty("front_default")]
         public Uri FrontDefault { get; set; }
     }
+
+    public partial class TypeElement
+    {
+        [JsonProperty("slot")]
+        public long Slot { get; set; }
+
+        [JsonProperty("type")]
+        public Species Type { get; set; }
+    }
+
+    public partial class Species
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
+    }
+
 }

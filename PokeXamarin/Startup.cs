@@ -9,6 +9,7 @@ using System.IO;
 using PokeXamarin.ViewModels.Interfaces;
 using PokeXamarin.ViewModels;
 using PokeXamarin.Services;
+using MonkeyCache.LiteDB;
 
 namespace PokeXamarin
 {
@@ -16,6 +17,8 @@ namespace PokeXamarin
     {
         public static App Init(Action<HostBuilderContext, IServiceCollection> nativeConfigureServices)
         {
+            Barrel.ApplicationId = "PokeXamarin";
+
             var systemDir = FileSystem.CacheDirectory;
             ResourcesHelpers.ExtractSaveResource("PokeXamarin.appsettings.json", systemDir);
             var fullConfig = Path.Combine(systemDir, "PokeXamarin.appsettings.json");
