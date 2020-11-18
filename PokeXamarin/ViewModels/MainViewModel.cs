@@ -25,7 +25,7 @@ namespace PokeXamarin.ViewModels
 
         public ObservableCollection<Pokemon> Pokemons { get; }
         IPokemonService _PokemonService;
-        bool IsNotConnected { get; set; };
+        bool IsNotConnected { get; set; }
 
         private ICommand _itemTappedCommand;
         public ICommand ItemTappedCommand => _itemTappedCommand ?? (_itemTappedCommand =
@@ -100,7 +100,7 @@ namespace PokeXamarin.ViewModels
 
                     pokemon.Image = ImageHelpers.GetImageStreamFromUrl(pokemon.Sprites.FrontDefault.AbsoluteUri);
 
-                    pokemon.AllTypes = String.Join(",", pokemon.Types.Select(p => p.Type.Name.ToString()).ToArray());
+                    pokemon.AllTypes = String.Join(",", pokemon.Types.Select(p => p.Type.Name));
 
                     if (!isExist)
                     {
@@ -125,7 +125,6 @@ namespace PokeXamarin.ViewModels
             var page = new PokemonProfilePage(pokemon);
 
             await PopupNavigation.Instance.PushAsync(page);
-            var teste = pokemon;
         }
     }
 }
