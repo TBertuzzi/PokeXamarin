@@ -16,4 +16,5 @@ Controles e Plugins Utilizados :
 |ACR User Dialogs|[Medium](https://medium.com/@bertuzzi/meu-plugin-minha-vida-toast-load-dialogs-baf96b51ade7)|
 |Pop ups|[Medium](https://medium.com/@bertuzzi/o-x-do-xamarin-forms-pop-ups-5cffa68ee3e)|
 |MonkeyCache|[Medium](https://bertuzzi.medium.com/o-x-do-xamarin-forms-armazenando-cache-com-monkey-cache-p-b881deeba8cd)|
+|Xamarin.Essentials|[Medium](https://bertuzzi.medium.com/o-x-do-xamarin-forms-xamarin-essentials-26511f833ba)|
 
