@@ -100,6 +100,8 @@ namespace PokeXamarin.ViewModels
 
                     pokemon.Image = ImageHelpers.GetImageStreamFromUrl(pokemon.Sprites.FrontDefault.AbsoluteUri);
 
+                    pokemon.ImageBack = ImageHelpers.GetImageStreamFromUrl(pokemon.Sprites.BackDefault.AbsoluteUri);
+
                     pokemon.AllTypes = String.Join(",", pokemon.Types.Select(p => p.Type.Name));
 
                     if (!isExist)

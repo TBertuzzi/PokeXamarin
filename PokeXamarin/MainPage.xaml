@@ -24,7 +24,7 @@
             <DataTemplate>
 
                 <ViewCell>
-                    <Grid Padding="20,30" RowDefinitions="auto, auto" ColumnDefinitions="auto, *" >
+                    <Grid Padding="20,30" RowDefinitions="auto, auto" ColumnDefinitions="auto, *,auto" >
 
                         <ffimageloading:CachedImage
                               HorizontalOptions="CenterAndExpand"
@@ -45,13 +45,33 @@
                         <Label Grid.Row="0" 
                                    Grid.Column="1"
                                      FontSize="Medium"
+                                 HorizontalTextAlignment="Center"
                                    Text="{Binding Id,StringFormat='#{0}'}"/>
 
-                        <Label Grid.Row="1" 
+                        <Label Grid.Row="1"
+                                   HorizontalTextAlignment="Center"
                                    Grid.Column="1"
+                                   Grid.RowSpan ="1"
                                    Text="{Binding Name}"
                                    FontSize="Large"
                                    TextColor="#FF5525"/>
+
+                        
+                       <ffimageloading:CachedImage
+                              HorizontalOptions="CenterAndExpand"
+                              VerticalOptions="CenterAndExpand"
+                            HeightRequest="120" 
+                            WidthRequest = "120"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Grid.RowSpan ="2"
+                            Source="{Binding ImageBack, Converter={StaticResource imageFileCvt}}"
+                            CacheDuration="7" >
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation BorderHexColor="#ff0000" BorderSize="5" />
+                                <fftransformations:GrayscaleTransformation />
+                            </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
 
 
                     </Grid>

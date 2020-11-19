@@ -19,6 +19,8 @@ namespace PokeXamarin.Model
 
         public byte[] Image { get; set; }
 
+        public byte[] ImageBack { get; set; }
+
         [JsonProperty("types")]
         public TypeElement[] Types { get; set; }
 
@@ -32,6 +34,9 @@ namespace PokeXamarin.Model
     {
         [JsonProperty("front_default")]
         public Uri FrontDefault { get; set; }
+
+        [JsonProperty("back_default")]
+        public Uri BackDefault { get; set; }
     }
 
     public partial class TypeElement
